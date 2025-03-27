@@ -1,3 +1,24 @@
+local executor = identifyexecutor and identifyexecutor() or "Unknown"
+
+if executor == "Xeno" then
+    -- Check if the key is set and matches the secure key
+    if not getgenv or not getgenv().BZE_AuthKey then
+        warn("Unauthorized executor detected! No key found.")
+        return
+    end
+
+    -- Verify the key matches
+    if getgenv().BZE_AuthKey ~= "f3D#7wN!p2jS9u3K$kQ1aZrM!b8cX6VqF7T4HhB" then
+        warn("Invalid authorization key! This script only works on authorized BZE.gg instances.")
+        return
+    end
+else
+    warn("Unauthorized executor detected! This script only works on BZE.gg.")
+    return
+end
+
+print("Running on authorized executor: BZE.gg with correct key!")
+
 local G2L = {};
 
 -- StarterGui.BZEgg
